@@ -39,9 +39,53 @@
 # 100               --> $t3
 main:
 
-li $s0, 0
-size---
-li $s1[10]
+li $s0, 0               int sum = 0;
+li $t2, 10              int size = 10;
+la $s1, summarr         int sumarr[] = {1,3,44,66,88,90,9,232,4325,2321};
+
+//add loop here for(int i = 0; i < size; i++){
+		sum = sum + sumarr[i];
+
+sumloop: #sum of array       
+add $s0, $s0, array[i]
+
+	}
+   
+ li $s3, 45689          int num = 45689;
+ li $s2, 0              int rev = 0;
+ li $t1, -1             int d = -1;
+
+blez $s3, palindromeLoopEnd
+palindromeLoop:             while loop while( num > 0){
+    rem $t1, $s3, $t0		    d = num % 10;
+    mul $s2, $s2, $t2           rev = rev*10 + d; #rev = rev*10
+    add $s2, $s2, $t1           #rev = rev + d
+    div $s3, $s3, $t2 		    num = num / 10;
+    bgtz $s3, palindromeLoop    
+palindromeLoopEnd:
+	}
+    
+la $s5, arr         int arr[] = {1,2,3,4,5,4,3,2,1};
+li $s6, 0           int beg = 0;
+li $s7, 8           int end = 8;
+li $s4, -1          int isPalindrome = 1;
+
+bge $s6, $s7,                while(beg < end){
+		            if (arr[beg] != arr[end]){
+move $s4, $t4			isPalindrome = -1;
+j 			                break;
+		}
+        
+addi $s6, $s6, 1		beg++;
+subi $s7, $s7, 1    	end--;
+
+	}
+
+
+	cout << "Sum: " << sum << endl;
+	cout << "Reversed Number: " << rev << endl;
+	cout << "Is Palindrome: " << isPalindrome << endl;
+
 
 exit:
   la   $a0, sumlbl    # puts sumlbl into arg0 (a0 register) for cout
