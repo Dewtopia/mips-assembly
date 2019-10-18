@@ -39,47 +39,47 @@
 # 100               --> $t3
 main:
 
-li $s0, 0               int sum = 0;
-li $t2, 10              int size = 10;
-la $s1, summarr         int sumarr[] = {1,3,44,66,88,90,9,232,4325,2321};
+li $s0, 0               	#int sum = 0;
+li $t2, 10              	#int size = 10;
+la $s1, summarr         	#int sumarr[] = {1,3,44,66,88,90,9,232,4325,2321};
 
-bge $t0, $t2, sumArrayEnd		//add loop here for(int i = 0; i < size; i++){
+bge $t0, $t2, sumArrayEnd			#for(int i = 0; i < size; i++){
 sumArrayStart:
-	add $s0, $s0, array[i] 		sum = sum + sumarr[i];
+	add $s0, $s0, array[i] 			#sum = sum + sumarr[i];
 	blt $t0, $t2, sumArrayStart
-sumArrayEnd: #sum of array      
-	}
+sumArrayEnd:      
+									#}
    
- li $s3, 45689          int num = 45689;
- li $s2, 0              int rev = 0;
- li $t1, -1             int d = -1;
+ li $s3, 45689          	#int num = 45689;
+ li $s2, 0              	#int rev = 0;
+ li $t1, -1             	#int d = -1;
 
 blez $s3, palindromeLoopEnd
-palindromeLoop:             while loop while( num > 0){
-    rem $t1, $s3, $t0		    d = num % 10;
-    mul $s2, $s2, $t2           rev = rev*10 + d; #rev = rev*10
-    add $s2, $s2, $t1           #rev = rev + d
-    div $s3, $s3, $t2 		    num = num / 10;
+palindromeLoop:             		#while loop while( num > 0){
+    rem $t1, $s3, $t2		 		#d = num % 10;
+    mul $s2, $s2, $t2          		#rev = rev*10 + d; #rev = rev*10
+    add $s2, $s2, $t1           	#rev = rev + d
+    div $s3, $s3, $t2 		    	#num = num / 10;
     bgtz $s3, palindromeLoop    
 palindromeLoopEnd:
-	}
+									#}
     
-la $s5, arr         int arr[] = {1,2,3,4,5,4,3,2,1};
-li $s6, 0           int beg = 0;
-li $s7, 8           int end = 8;
-li $s4, -1          int isPalindrome = 1;
+la $s5, arr         		#int arr[] = {1,2,3,4,5,4,3,2,1};
+li $s6, 0           		#int beg = 0;
+li $s7, 8           		#int end = 8;
+li $s4, -1          		#int isPalindrome = 1;
 
-bge $s6, $s7, checkPalindromeEnd               		while(beg < end){
+bge $s6, $s7, checkPalindromeEnd               			#while(beg < end){
 checkPalindromeStart:	
-	beq arr[beg], arr[end], checkPalindromeMiddle	if (arr[beg] != arr[end]){
-	move $s4, $t4									isPalindrome = -1;
-	j checkPalindromeEnd			                break;
-													}
+	beq arr[beg], arr[end], checkPalindromeMiddle		#if (arr[beg] != arr[end]){
+	move $s4, $t4										#isPalindrome = -1;
+	j checkPalindromeEnd			                	#break;
+														#}
 checkPalindromeMiddle:    
-	addi $s6, $s6, 1								beg++;
-	subi $s7, $s7, 1    							end--;
+	addi $s6, $s6, 1						#beg++;
+	subi $s7, $s7, 1    					#end--;
 	blt arr[beg], arr[end], 
-													}
+											#}
 checkPalindromeEnd:
 
 	cout << "Sum: " << sum << endl;
