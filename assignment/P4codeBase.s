@@ -43,12 +43,11 @@ li $s0, 0               int sum = 0;
 li $t2, 10              int size = 10;
 la $s1, summarr         int sumarr[] = {1,3,44,66,88,90,9,232,4325,2321};
 
-//add loop here for(int i = 0; i < size; i++){
-		sum = sum + sumarr[i];
-
-sumloop: #sum of array       
-add $s0, $s0, array[i]
-
+bge $t0, $t2, sumArrayEnd		//add loop here for(int i = 0; i < size; i++){
+sumArrayStart:
+	add $s0, $s0, array[i] 		sum = sum + sumarr[i];
+	blt $t0, $t2, sumArrayStart
+sumArrayEnd: #sum of array      
 	}
    
  li $s3, 45689          int num = 45689;
