@@ -41,11 +41,11 @@ main:
 
 li $s0, 0               	#int sum = 0;
 li $t2, 10              	#int size = 10;
-la $s1, summarr         	#int sumarr[] = {1,3,44,66,88,90,9,232,4325,2321};
+la $s1, sumarr         		#int sumarr[] = {1,3,44,66,88,90,9,232,4325,2321};
 
 bge $t0, $t2, sumArrayEnd			#for(int i = 0; i < size; i++){
 sumArrayStart:
-	add $s0, $s0, array[i] 			#sum = sum + sumarr[i];
+	#add $s0, $s0, array[i] 			#sum = sum + sumarr[i];
 	blt $t0, $t2, sumArrayStart
 sumArrayEnd:      
 									#}
@@ -71,20 +71,20 @@ li $s4, -1          		#int isPalindrome = 1;
 
 bge $s6, $s7, checkPalindromeEnd               			#while(beg < end){
 checkPalindromeStart:	
-	beq arr[beg], arr[end], checkPalindromeMiddle		#if (arr[beg] != arr[end]){
+	#beq arr[beg], arr[end], checkPalindromeMiddle		#if (arr[beg] != arr[end]){
 	move $s4, $t4										#isPalindrome = -1;
 	j checkPalindromeEnd			                	#break;
 														#}
 checkPalindromeMiddle:    
 	addi $s6, $s6, 1						#beg++;
-	subi $s7, $s7, 1    					#end--;
-	blt arr[beg], arr[end], 
+	add $s7, $s7, $s4    					#end--;
+	#blt arr[beg], arr[end], 
 											#}
 checkPalindromeEnd:
 
-	cout << "Sum: " << sum << endl;
-	cout << "Reversed Number: " << rev << endl;
-	cout << "Is Palindrome: " << isPalindrome << endl;
+	#cout << "Sum: " << sum << endl;
+	#cout << "Reversed Number: " << rev << endl;
+	#cout << "Is Palindrome: " << isPalindrome << endl;
 
 
 exit:
