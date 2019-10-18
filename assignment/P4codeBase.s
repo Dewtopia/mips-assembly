@@ -70,17 +70,18 @@ li $s6, 0           int beg = 0;
 li $s7, 8           int end = 8;
 li $s4, -1          int isPalindrome = 1;
 
-bge $s6, $s7,                while(beg < end){
-		            if (arr[beg] != arr[end]){
-move $s4, $t4			isPalindrome = -1;
-j 			                break;
-		}
-        
-addi $s6, $s6, 1		beg++;
-subi $s7, $s7, 1    	end--;
-
-	}
-
+bge $s6, $s7, checkPalindromeEnd               		while(beg < end){
+checkPalindromeStart:	
+	beq arr[beg], arr[end], checkPalindromeMiddle	if (arr[beg] != arr[end]){
+	move $s4, $t4									isPalindrome = -1;
+	j checkPalindromeEnd			                break;
+													}
+checkPalindromeMiddle:    
+	addi $s6, $s6, 1								beg++;
+	subi $s7, $s7, 1    							end--;
+	blt arr[beg], arr[end], 
+													}
+checkPalindromeEnd:
 
 	cout << "Sum: " << sum << endl;
 	cout << "Reversed Number: " << rev << endl;
