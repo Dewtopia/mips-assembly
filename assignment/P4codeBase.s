@@ -74,14 +74,16 @@ li $s4, -1          		#int isPalindrome = 1;
 
 bge $s6, $s7, checkPalindromeEnd               			#while(beg < end){
 checkPalindromeStart:	
-	#beq arr[beg], arr[end], checkPalindromeMiddle		#if (arr[beg] != arr[end]){
-	move $s4, $t4										#isPalindrome = -1;
+	lw $t4, ($s5)
+	lw $t5, ($s7)
+	beq $s6, $s7, checkPalindromeMiddle		#if (arr[beg] != arr[end]){
+	li $s4, -1							#isPalindrome = -1;
 	j checkPalindromeEnd			                	#break;
 														#}
 checkPalindromeMiddle:    
 	addi $s6, $s6, 1						#beg++;
-	add $s7, $s7, $s4    					#end--;
-	#blt arr[beg], arr[end], 
+	add $s7, $s7, $s4    						#end--;
+	#blt $s6, $s7, checkPalindromeStart 
 											#}
 checkPalindromeEnd:
 
