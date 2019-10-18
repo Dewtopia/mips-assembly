@@ -45,7 +45,10 @@ la $s1, sumarr         		#int sumarr[] = {1,3,44,66,88,90,9,232,4325,2321};
 
 bge $t0, $t2, sumArrayEnd			#for(int i = 0; i < size; i++){
 sumArrayStart:
-	#add $s0, $s0, array[i] 			#sum = sum + sumarr[i];
+	lw $t1, ($s1)
+	add $s0, $s0, $t1 			#sum = sum + sumarr[i];
+	addi $s1, $s1, 4
+	addi $t0, $t0, 1
 	blt $t0, $t2, sumArrayStart
 sumArrayEnd:      
 									#}
