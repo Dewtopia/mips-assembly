@@ -39,6 +39,10 @@
 # 100               --> $t3
 main:
 
+li $s0, 0
+size---
+li $s1[10]
+
 exit:
   la   $a0, sumlbl    # puts sumlbl into arg0 (a0 register) for cout
   addi $v0, $0, 4     # puts 4 in v0 which denotes we are printing a string
