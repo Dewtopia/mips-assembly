@@ -68,22 +68,23 @@ palindromeLoopEnd:
 			
     
 la $s5, arr         		#int arr[] = {1,2,3,4,5,4,3,2,1};
+la $s8, arr                 	#duplicate of int arr[] = {1,2,3,4,5,4,3,2,1}
 li $s6, 0           		#int beg = 0;
 li $s7, 8           		#int end = 8;
-li $s4, -1          		#int isPalindrome = 1;
+li $s4, 1          		#int isPalindrome = 1;
+addi $s8, $s8, 32           	#To start at the end?
 
-bge $s6, $s7, checkPalindromeEnd               			#while(beg < end){
-checkPalindromeStart:	
-        sll $t4, $s6, 1
-        add $t4, $t4, $s5              
-        lw $t4, ($t4)
-        srl $t5, $s7, 1
-        add $t5, $t5, $s5
-        lw $t5, ($s5)
-        #addi $t5, $t5, 36
+bge $s6, $s7, checkPalindromeEnd               				#while(beg < end){
+checkPalindromeStart:
+    
+    lw $t5, 0($s5)     	 	#load address of current $s5 
+    addi $s5, $s5, 4    	#moves pointer forward
+    lw $t4, 0($s8)     		#This loads value of last element in array
+    addi $s8, $s8, -4   	#moves end pointer of duplicate array back
 
-        #add $t5, $t5, $s5
-        beq $t4, $t5, checkPalindromeMiddle		                #if (arr[beg] != arr[end]){
+    # I know there has to be a better way to do this but I spent forever trying. I'll come to office hours.
+
+    beq $t4, $t5, checkPalindromeMiddle		                	#if (arr[beg] != arr[end]){
 	li $s4, -1							#isPalindrome = -1;
 	j checkPalindromeEnd			                	#break;
 						
