@@ -51,7 +51,7 @@ sumArrayStart:
 	addi $t0, $t0, 1
 	blt $t0, $t2, sumArrayStart
 sumArrayEnd:      
-									#}
+                                                
    
  li $s3, 45689          	#int num = 45689;
  li $s2, 0              	#int rev = 0;
@@ -59,13 +59,13 @@ sumArrayEnd:
 
 blez $s3, palindromeLoopEnd
 palindromeLoop:             		#while loop while( num > 0){
-    rem $t1, $s3, $t2		 		#d = num % 10;
+    rem $t1, $s3, $t2		 	#d = num % 10;
     mul $s2, $s2, $t2          		#rev = rev*10 + d; #rev = rev*10
     add $s2, $s2, $t1           	#rev = rev + d
     div $s3, $s3, $t2 		    	#num = num / 10;
     bgtz $s3, palindromeLoop    
 palindromeLoopEnd:
-									#}
+			
     
 la $s5, arr         		#int arr[] = {1,2,3,4,5,4,3,2,1};
 li $s6, 0           		#int beg = 0;
@@ -74,24 +74,32 @@ li $s4, -1          		#int isPalindrome = 1;
 
 bge $s6, $s7, checkPalindromeEnd               			#while(beg < end){
 checkPalindromeStart:	
-	#lw $t4, ($s5)
-	#lw $t5, ($s7)
-	#beq $s6, $s7, checkPalindromeMiddle		#if (arr[beg] != arr[end]){
+        sll $t4, $s6, 1
+        add $t4, $t4, $s5              
+        lw $t4, ($t4)
+        srl $t5, $s7, 1
+        add $t5, $t5, $s5
+        lw $t5, ($s5)
+        #addi $t5, $t5, 36
+
+        #add $t5, $t5, $s5
+        beq $t4, $t5, checkPalindromeMiddle		                #if (arr[beg] != arr[end]){
 	li $s4, -1							#isPalindrome = -1;
 	j checkPalindromeEnd			                	#break;
-														#}
+						
 checkPalindromeMiddle:    
 	addi $s6, $s6, 1						#beg++;
 	addi $s7, $s7, -1    						#end--;
 	blt $s6, $s7, checkPalindromeStart 
-											#}
+					
 checkPalindromeEnd:
-
 	#cout << "Sum: " << sum << endl;
 	#cout << "Reversed Number: " << rev << endl;
 	#cout << "Is Palindrome: " << isPalindrome << endl;
 
+addi $s1,$s2,0      # move rev to s1 as required by the cout below
 
+addi $s3,$s4,0      # move isPalindrome to s3 as required by the cout below
 exit:
   la   $a0, sumlbl    # puts sumlbl into arg0 (a0 register) for cout
   addi $v0, $0, 4     # puts 4 in v0 which denotes we are printing a string
